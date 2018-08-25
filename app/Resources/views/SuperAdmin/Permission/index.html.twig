@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+{% import ":Components/Inspinia/UI:macros.html.twig" as UI %}
+
+{% block title %}{{ 'app.administrator.permissions.list' | trans }}{% endblock %}
+
+{% block breadcrumb %}
+    <li class="active">
+        <strong>{{ 'app.administrator.permissions.list' | trans }}</strong>
+    </li>
+{% endblock %}
+
+{% block buttons %}
+    <a href="{{ path('administrator_permission_new') }}"
+       class="btn btn-primary ladda-button" data-style="expand-right">{{ 'app.administrator.permissions.new' | trans }}</a>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{{ 'app.administrator.permissions.list' | trans }}</h5>
+            <div class="ibox-tools"></div>
+        </div>
+        <div class="ibox-content">
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                    <tr>
+                        <th>{{ 'app.code' | trans }}</th>
+                        <th>{{ 'app.description' | trans }}</th>
+                        <th width="120px">{{ 'app.actions' | trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for permission in permissions %}
+                        <tr class="gradeX">
+                            <td><strong>{{ permission }}</strong></td>
+                            <td>{{ permission.description | default('---') }}</td>
+                            <td>
+                                {{ UI.editButton(path('administrator_permission_edit', { 'id': permission.id })) }}
+                                &nbsp;
+                                {{ UI.deleteButton(path('administrator_permission_delete', { 'id': permission.id })) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>{{ 'app.code' | trans }}</th>
+                        <th>{{ 'app.description' | trans }}</th>
+                        <th>{{ 'app.actions' | trans }}</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

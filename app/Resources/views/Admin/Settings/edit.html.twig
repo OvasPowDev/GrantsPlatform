@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}
+    {{ 'app.administrator.settings' | trans }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <li class="active">
+        <strong>{{ 'app.administrator.settings' | trans }}</strong>
+    </li>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{{ 'app.administrator.settings.edit' | trans }}</h5>
+            <div class="ibox-tools">
+            </div>
+        </div>
+        <div class="ibox-content">
+            {{ form_start(form) }}
+
+            {{ form_row(form.email) }}
+            {{ form_row(form.url) }}
+            {{ form_row(form.apiUrl) }}
+
+            <div class="form-group">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <a class="btn btn-white" href="{{ path('grand_central') }}">{{ 'app.cancel' | trans }}</a>
+                    <button class="ladda-button btn btn-primary" type="submit" data-style="zoom-in">{{ 'app.save'|trans }}</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

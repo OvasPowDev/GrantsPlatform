@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}{{ 'app.administrator.permissions.assign' | trans }}{% endblock %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{{ path('administrator_permission_list') }}">{{ 'app.administrator.permissions.list' | trans }}</a>
+    </li>
+    <li class="active">
+        <strong>{{ 'app.administrator.permissions.assign' | trans }}</strong>
+    </li>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{{ 'app.administrator.permissions.assign' | trans }}</h5>
+            <div class="ibox-tools"></div>
+        </div>
+        <div class="ibox-content">
+
+            <table class="table" id="permission-table">
+                <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    {% for role in roles %}
+                    <th>{{ role | trans }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+                {% for permission in permissions %}
+                    <tr>
+                        <td>{{ permission.description | default(permission.code) }}</td>
+                        {% for role, translatableRole in roles %}
+                            <td>
+                                <input name="{{ role }}[{{ permission.id }}]"
+                                       data-role="{{ role }}" data-permission="{{ permission.id }}"
+                                       {% if permission.isGrantedForRole(role) %}checked="checked"{% endif %}
+                                       title="{{ 'app.permissions' | trans }}" class="permission-checkbox i-checks" type="checkbox" value="1">
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $(document).ready(function () {
+        var restClient = new $.RestClient('{{ get('apiUrl') }}');
+        restClient.add('permissions', {stripTrailingSlash: true});
+        restClient.permissions.add('role', {stripTrailingSlash: true});
+
+        $('#permission-table').on('ifChanged', '.permission-checkbox', function () {
+            var roleName = $(this).data('role');
+            var permission = $(this).data('permission');
+            var persist = $(this).is(':checked') ? true : false;
+            var request;
+
+            if (!persist) {
+                request = restClient.permissions.role.destroy(permission, roleName);
+            } else {
+                request = restClient.permissions.role.create(permission, roleName);
+            }
+
+            request.error(function (response) {
+                var status = response.status;
+                var text = response.statusText;
+                toastr.error(status + ', ' + text);
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% trans_default_domain 'AppBundle' %}
+
+{{ form_start(form) }}
+
+{{ form_row(form.name) }}
+
+
+{% if company %}
+<div class="form-group ">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-10">
+        {% if company.logo %}
+            <img height="100px" class="animated tada" src="{{ vich_uploader_asset(company, 'photo') }}" alt="{{ company }}" />
+        {% else %}
+            <img src="//dummyimage.com/100x100/000/fff&text={{ company.initial }}" alt="{{ company }}" class="animated tada" height="100px">
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{{ form_row(form.photo) }}
+{{ form_row(form.email) }}
+{{ form_row(form.expiresAt) }}
+{{ form_row(form.enabled) }}
+{{ form_row(form.expired) }}
+
+<div class="form-group">
+    <div class="col-sm-4 col-sm-offset-2">
+        <a class="btn btn-white" href="{{ path('administrator_company_list') }}">{{ 'app.cancel' | trans }}</a>
+        <button class="ladda-button btn btn-primary" type="submit" data-style="zoom-in">{{ 'app.save'|trans }}</button>
+    </div>
+</div>
+{{ form_end(form) }}
