@@ -51,10 +51,9 @@
                             <td>{{ company.email | default('---') }}</td>
                             <td>{{ company.enabled ? 'app.yes' | trans : 'app.no' | trans }}</td>
                             <td>{{ company.expiresAt ? company.expiresAt | date('Y-m-d') : 'app.no' | trans }}</td>
-                            <td>
+                            <td align="center">
                                 {{ UI.editButton(path('administrator_company_edit', { 'id': company.id })) }}
-                                &nbsp;
-                                {{ UI.deleteButton(path('administrator_company_delete', { 'id': company.id })) }}
+
                             </td>
                         </tr>
                     {% endfor %}
