@@ -150,4 +150,5 @@ class UserController extends Controller
 
         return $this->redirectToRoute('administrator_user_list');
     }
+
 }

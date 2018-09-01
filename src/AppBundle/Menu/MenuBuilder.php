@@ -43,7 +43,7 @@ class MenuBuilder
         $this->configureDashboardMenu($menu);
         $this->configureSuperAdministratorMenu($menu);
         $this->configureAdministratorMenu($menu);
-        $this->configureAPPMenu($menu);
+//        $this->configureAPPMenu($menu);
         $this->configureUsersMenu($menu);
         $this->configureSettingsMenu($menu);
         $this->configureDocumentationMenu($menu);
@@ -140,31 +140,31 @@ class MenuBuilder
             }
         }
 
-        // Permission list
-        if ($checker->isGranted(PrimaryVoter::MANAGE, Permission::class)) {
-            $menu
-                ->addChild('app.administrator.permissions', ['uri' => '#'])
-                ->setAttribute('dropdown', true)
-                ->setAttribute('icon', 'fa fa-lock')
-                ->setChildrenAttribute('class', 'nav nav-second-level collapse');
-
-            if ($checker->isGranted(PrimaryVoter::CREATE, Permission::class)) {
-                $menu['app.administrator.permissions']
-                    ->addChild('app.administrator.permissions.new', ['route' => 'administrator_permission_new']);
-            }
-
-            if ($checker->isGranted(PrimaryVoter::INDEX, Permission::class)) {
-                $menu['app.administrator.permissions']
-                    ->addChild('app.administrator.permissions.list', ['route' => 'administrator_permission_list'])
-                    ->setExtra('routes', ['administrator_permission_list', 'administrator_permission_edit']);
-            }
-
-            if ($checker->isGranted(PrimaryVoter::ASSIGN, Permission::class)) {
-                $menu['app.administrator.permissions']
-                    ->addChild('app.administrator.permissions.assignment', ['route' => 'administrator_permission_assign'])
-                    ->setExtra('routes', ['administrator_permission_assign']);
-            }
-        }
+//        // Permission list
+//        if ($checker->isGranted(PrimaryVoter::MANAGE, Permission::class)) {
+//            $menu
+//                ->addChild('app.administrator.permissions', ['uri' => '#'])
+//                ->setAttribute('dropdown', true)
+//                ->setAttribute('icon', 'fa fa-lock')
+//                ->setChildrenAttribute('class', 'nav nav-second-level collapse');
+//
+//            if ($checker->isGranted(PrimaryVoter::CREATE, Permission::class)) {
+//                $menu['app.administrator.permissions']
+//                    ->addChild('app.administrator.permissions.new', ['route' => 'administrator_permission_new']);
+//            }
+//
+//            if ($checker->isGranted(PrimaryVoter::INDEX, Permission::class)) {
+//                $menu['app.administrator.permissions']
+//                    ->addChild('app.administrator.permissions.list', ['route' => 'administrator_permission_list'])
+//                    ->setExtra('routes', ['administrator_permission_list', 'administrator_permission_edit']);
+//            }
+//
+//            if ($checker->isGranted(PrimaryVoter::ASSIGN, Permission::class)) {
+//                $menu['app.administrator.permissions']
+//                    ->addChild('app.administrator.permissions.assignment', ['route' => 'administrator_permission_assign'])
+//                    ->setExtra('routes', ['administrator_permission_assign']);
+//            }
+//        }
     }
 
     /**

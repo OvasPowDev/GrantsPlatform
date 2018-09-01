@@ -20,8 +20,8 @@ class CompanyType extends AbstractType
             ->add('photo', VichFileType::class, ['download_uri' => true, 'label' => 'app.logo', 'translation_domain' => 'AppBundle'])
             ->add('email', null, ['label' => 'app.email', 'translation_domain' => 'AppBundle'])
             ->add('enabled', null, ['label' => 'app.enabled', 'translation_domain' => 'AppBundle'])
-            ->add('expired', null, ['label' => 'app.expired', 'translation_domain' => 'AppBundle'])
-            ->add('expiresAt', DateTimeType::class, ['format' => 'yyyy-MM-dd', 'widget' => 'single_text', 'attr' => ['class' => 'datepicker'], 'label' => 'app.expired_at', 'translation_domain' => 'AppBundle'])
+//            ->add('expired', null, ['label' => 'app.expired', 'translation_domain' => 'AppBundle'])
+//            ->add('expiresAt', DateTimeType::class, ['format' => 'yyyy-MM-dd', 'widget' => 'single_text', 'attr' => ['class' => 'datepicker'], 'label' => 'app.expired_at', 'translation_domain' => 'AppBundle'])
         ;
     }
 

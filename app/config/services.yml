@@ -78,3 +78,21 @@ services:
         arguments: ["@knp_menu.factory", "@service_container"]
         tags:
             - { name: knp_menu.menu_builder, method: mainMenu, alias: main } # The alias is what is used to retrieve the menu
+
+    # Generator service
+    app.generator:
+        class: AppBundle\Services\GeneratorService
+        arguments: ['@service_container']
+        public: true
+
+    # Email
+    app.email:
+        class: AppBundle\Services\EmailService
+        arguments: ['@service_container']
+        public: true
+
+    # Base services
+    app.tools:
+        class: AppBundle\Services\ToolsService
+        arguments: ['@service_container', '@router']
+        public: true
