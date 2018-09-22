@@ -778,6 +778,42 @@
         <source><![CDATA[app.impersonate_%username%]]></source>
         <target><![CDATA[Log in as %username%]]></target>
       </trans-unit>
+      <trans-unit id="195" approved="yes">
+        <source><![CDATA[app.administrato.plan.list]]></source>
+        <target><![CDATA[Plan list]]></target>
+      </trans-unit>
+      <trans-unit id="196" approved="yes">
+        <source><![CDATA[app.administrator.plan]]></source>
+        <target><![CDATA[Plan]]></target>
+      </trans-unit>
+      <trans-unit id="197" approved="yes">
+        <source><![CDATA[app.administrator.plan.new]]></source>
+        <target><![CDATA[New plan]]></target>
+      </trans-unit>
+      <trans-unit id="198" approved="yes">
+        <source><![CDATA[app.quantity_user]]></source>
+        <target><![CDATA[Quantity user]]></target>
+      </trans-unit>
+      <trans-unit id="199" approved="yes">
+        <source><![CDATA[app.time]]></source>
+        <target><![CDATA[time]]></target>
+      </trans-unit>
+      <trans-unit id="200" approved="yes">
+        <source><![CDATA[app.quantity_grant]]></source>
+        <target><![CDATA[Quantity_grant]]></target>
+      </trans-unit>
+      <trans-unit id="201" approved="yes">
+        <source><![CDATA[app.administrator.plan.list]]></source>
+        <target><![CDATA[Plan list]]></target>
+      </trans-unit>
+      <trans-unit id="202" approved="yes">
+        <source><![CDATA[app.created_at]]></source>
+        <target><![CDATA[Created at]]></target>
+      </trans-unit>
+      <trans-unit id="203" approved="yes">
+        <source><![CDATA[app.plan.new.success]]></source>
+        <target><![CDATA[The plan has been created correctly]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

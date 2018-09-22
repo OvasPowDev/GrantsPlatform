@@ -140,6 +140,22 @@ class MenuBuilder
             }
         }
 
+
+            $menu
+                ->addChild('app.administrator.plan', ['uri' => '#'])
+                ->setAttribute('dropdown', true)
+                ->setAttribute('icon', 'fa fa-newspaper-o')
+                ->setChildrenAttribute('class', 'nav nav-second-level collapse');
+
+                $menu['app.administrator.plan']
+                    ->addChild('app.administrator.plan.new', ['route' => 'administrator_plan_new']);
+
+                $menu['app.administrator.plan']
+                    ->addChild('app.administrator.plan.list', ['route' => 'administrator_plan_list'])
+                    ->setExtra('routes', ['administrator_plan_list']);
+
+
+
 //        // Permission list
 //        if ($checker->isGranted(PrimaryVoter::MANAGE, Permission::class)) {
 //            $menu

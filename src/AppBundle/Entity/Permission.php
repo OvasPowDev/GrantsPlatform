@@ -250,4 +250,30 @@ class Permission implements Translatable
         $matchingRolePermissions =  $this->getRolePermissions()->matching($criteria);
         return count($matchingRolePermissions);
     }
+
+    /**
+     * Add rolePermission.
+     *
+     * @param \AppBundle\Entity\RolePermission $rolePermission
+     *
+     * @return Permission
+     */
+    public function addRolePermission(RolePermission $rolePermission)
+    {
+        $this->rolePermissions[] = $rolePermission;
+
+        return $this;
+    }
+
+    /**
+     * Remove rolePermission.
+     *
+     * @param \AppBundle\Entity\RolePermission $rolePermission
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeRolePermission(RolePermission $rolePermission)
+    {
+        return $this->rolePermissions->removeElement($rolePermission);
+    }
 }
