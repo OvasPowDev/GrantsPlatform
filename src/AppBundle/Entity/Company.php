@@ -182,6 +182,14 @@ class Company
     private $updatedFromIp;
 
     /**
+     * @ORM\OneToMany(
+     *     targetEntity="Contract",
+     *     mappedBy="company"
+     * )
+     */
+    private $contracts;
+
+    /**
      * Get id
      *
      * @return int
@@ -428,6 +436,7 @@ class Company
     {
         $this->users = new ArrayCollection();
         $this->settings = new ArrayCollection();
+        $this->contracts = new ArrayCollection();
     }
 
     public function __toString()
@@ -681,5 +690,41 @@ class Company
         }
 
         return $picture;
+    }
+
+    /**
+     * Add contract.
+     *
+     * @param \AppBundle\Entity\Contract $contract
+     *
+     * @return Company
+     */
+    public function addContract(Contract $contract)
+    {
+        $this->contracts[] = $contract;
+
+        return $this;
+    }
+
+    /**
+     * Remove contract.
+     *
+     * @param \AppBundle\Entity\Contract $contract
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeContract(Contract $contract)
+    {
+        return $this->contracts->removeElement($contract);
+    }
+
+    /**
+     * Get contracts.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getContracts()
+    {
+        return $this->contracts;
     }
 }

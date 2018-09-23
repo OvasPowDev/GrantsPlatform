@@ -144,4 +144,30 @@ class UserPreferences
     {
         return $this->notificationPreferences;
     }
+
+    /**
+     * Add notificationPreference.
+     *
+     * @param \AppBundle\Entity\NotificationPreferences $notificationPreference
+     *
+     * @return UserPreferences
+     */
+    public function addNotificationPreference(NotificationPreferences $notificationPreference)
+    {
+        $this->notificationPreferences[] = $notificationPreference;
+
+        return $this;
+    }
+
+    /**
+     * Remove notificationPreference.
+     *
+     * @param \AppBundle\Entity\NotificationPreferences $notificationPreference
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeNotificationPreference(NotificationPreferences $notificationPreference)
+    {
+        return $this->notificationPreferences->removeElement($notificationPreference);
+    }
 }

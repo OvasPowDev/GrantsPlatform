@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+
+{% block title %}{{ 'app.administrator.contract.new' | trans }}{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="{{ path('administrator_contract_list') }}">{{ 'app.administrator.contract.list' | trans }}</a></li>
+    <li class="active">
+        <strong>{{ 'app.administrator.contract.new' | trans }}</strong>
+    </li>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{{ 'app.administrator.contract.new' | trans }}</h5>
+            <div class="ibox-tools">
+            </div>
+        </div>
+        <div class="ibox-content">
+            {{ include('SuperAdmin/Contract/_form.html.twig') }}
+        </div>
+    </div>
+
+{% endblock %}

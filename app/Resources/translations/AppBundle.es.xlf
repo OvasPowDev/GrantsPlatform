@@ -778,6 +778,106 @@
         <source><![CDATA[app.impersonate_%username%]]></source>
         <target><![CDATA[Ingresar como %username%]]></target>
       </trans-unit>
+      <trans-unit id="195" approved="yes">
+        <source><![CDATA[app.administrato.plan.list]]></source>
+        <target><![CDATA[Listado de planes]]></target>
+      </trans-unit>
+      <trans-unit id="196" approved="yes">
+        <source><![CDATA[app.administrator.plan]]></source>
+        <target><![CDATA[Plan]]></target>
+      </trans-unit>
+      <trans-unit id="197" approved="yes">
+        <source><![CDATA[app.administrator.plan.new]]></source>
+        <target><![CDATA[Nuevo plan]]></target>
+      </trans-unit>
+      <trans-unit id="198" approved="yes">
+        <source><![CDATA[app.quantity_user]]></source>
+        <target><![CDATA[Cantidad de usuarios]]></target>
+      </trans-unit>
+      <trans-unit id="199" approved="yes">
+        <source><![CDATA[app.time]]></source>
+        <target><![CDATA[Tiempo]]></target>
+      </trans-unit>
+      <trans-unit id="200" approved="yes">
+        <source><![CDATA[app.quantity_grant]]></source>
+        <target><![CDATA[Cantidad de grant]]></target>
+      </trans-unit>
+      <trans-unit id="201" approved="yes">
+        <source><![CDATA[app.administrator.plan.list]]></source>
+        <target><![CDATA[Listado de planes]]></target>
+      </trans-unit>
+      <trans-unit id="202" approved="yes">
+        <source><![CDATA[app.created_at]]></source>
+        <target><![CDATA[Fecha de creación]]></target>
+      </trans-unit>
+      <trans-unit id="203" approved="yes">
+        <source><![CDATA[app.plan.new.success]]></source>
+        <target><![CDATA[Se ha creado el plan correctamente]]></target>
+      </trans-unit>
+      <trans-unit id="204" approved="yes">
+        <source><![CDATA[app.plan.edit.success]]></source>
+        <target><![CDATA[Plan actualizado]]></target>
+      </trans-unit>
+      <trans-unit id="205" approved="yes">
+        <source><![CDATA[aap.active]]></source>
+        <target><![CDATA[Activo]]></target>
+      </trans-unit>
+      <trans-unit id="206" approved="yes">
+        <source><![CDATA[app.administrator.contracts]]></source>
+        <target><![CDATA[Contratos]]></target>
+      </trans-unit>
+      <trans-unit id="207" approved="yes">
+        <source><![CDATA[app.administrator.plans]]></source>
+        <target><![CDATA[Planes]]></target>
+      </trans-unit>
+      <trans-unit id="208" approved="yes">
+        <source><![CDATA[app.administrator.contract.new]]></source>
+        <target><![CDATA[Nuevo contrato]]></target>
+      </trans-unit>
+      <trans-unit id="209" approved="yes">
+        <source><![CDATA[app.administrator.contract.list]]></source>
+        <target><![CDATA[Listado de contratos]]></target>
+      </trans-unit>
+      <trans-unit id="210" approved="yes">
+        <source><![CDATA[app.administrato.contract.list]]></source>
+        <target><![CDATA[Listado de contratos]]></target>
+      </trans-unit>
+      <trans-unit id="211" approved="yes">
+        <source><![CDATA[app.active]]></source>
+        <target><![CDATA[Activo]]></target>
+      </trans-unit>
+      <trans-unit id="212" approved="yes">
+        <source><![CDATA[app.used_users]]></source>
+        <target><![CDATA[Usuarios utilizados]]></target>
+      </trans-unit>
+      <trans-unit id="213" approved="yes">
+        <source><![CDATA[app.grants_used]]></source>
+        <target><![CDATA[Grants utilizados]]></target>
+      </trans-unit>
+      <trans-unit id="214" approved="yes">
+        <source><![CDATA[app.administrator.plan.edit]]></source>
+        <target><![CDATA[Edición de plan]]></target>
+      </trans-unit>
+      <trans-unit id="215" approved="yes">
+        <source><![CDATA[app.administrator.contract.edit]]></source>
+        <target><![CDATA[Edición de contrato]]></target>
+      </trans-unit>
+      <trans-unit id="216" approved="yes">
+        <source><![CDATA[app.contract.new.success]]></source>
+        <target><![CDATA[Contrato creado correctamente]]></target>
+      </trans-unit>
+      <trans-unit id="217" approved="yes">
+        <source><![CDATA[app.contract.edit.success]]></source>
+        <target><![CDATA[Contrato ha sido editado]]></target>
+      </trans-unit>
+      <trans-unit id="218" approved="yes">
+        <source><![CDATA[app.administrator.valid.plan_not_valid]]></source>
+        <target><![CDATA[El plan que selecciono contiene una cantidad menor de usuarios a la cantidad de usuario ya activos de la empresa.]]></target>
+      </trans-unit>
+      <trans-unit id="219" approved="yes">
+        <source><![CDATA[app.administrator.valid.plan_not_valid_grant]]></source>
+        <target><![CDATA[El plan que selecciono contiene una cantidad menor de grants a la cantidad de grants ya utilizados por la empresa.]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
