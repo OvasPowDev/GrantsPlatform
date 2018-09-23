@@ -814,6 +814,70 @@
         <source><![CDATA[app.plan.new.success]]></source>
         <target><![CDATA[The plan has been created correctly]]></target>
       </trans-unit>
+      <trans-unit id="204" approved="yes">
+        <source><![CDATA[app.plan.edit.success]]></source>
+        <target><![CDATA[Plan updated]]></target>
+      </trans-unit>
+      <trans-unit id="205" approved="yes">
+        <source><![CDATA[aap.active]]></source>
+        <target><![CDATA[Active]]></target>
+      </trans-unit>
+      <trans-unit id="206" approved="yes">
+        <source><![CDATA[app.administrator.contracts]]></source>
+        <target><![CDATA[Contracts]]></target>
+      </trans-unit>
+      <trans-unit id="207" approved="yes">
+        <source><![CDATA[app.administrator.plans]]></source>
+        <target><![CDATA[Plans]]></target>
+      </trans-unit>
+      <trans-unit id="208" approved="yes">
+        <source><![CDATA[app.administrator.contract.new]]></source>
+        <target><![CDATA[New contract]]></target>
+      </trans-unit>
+      <trans-unit id="209" approved="yes">
+        <source><![CDATA[app.administrator.contract.list]]></source>
+        <target><![CDATA[Contract list]]></target>
+      </trans-unit>
+      <trans-unit id="210" approved="yes">
+        <source><![CDATA[app.administrato.contract.list]]></source>
+        <target><![CDATA[Contract list]]></target>
+      </trans-unit>
+      <trans-unit id="211" approved="yes">
+        <source><![CDATA[app.active]]></source>
+        <target><![CDATA[Active]]></target>
+      </trans-unit>
+      <trans-unit id="212" approved="yes">
+        <source><![CDATA[app.used_users]]></source>
+        <target><![CDATA[Used users]]></target>
+      </trans-unit>
+      <trans-unit id="213" approved="yes">
+        <source><![CDATA[app.grants_used]]></source>
+        <target><![CDATA[Grants used]]></target>
+      </trans-unit>
+      <trans-unit id="214" approved="yes">
+        <source><![CDATA[app.administrator.plan.edit]]></source>
+        <target><![CDATA[Plan edit]]></target>
+      </trans-unit>
+      <trans-unit id="215" approved="yes">
+        <source><![CDATA[app.administrator.contract.edit]]></source>
+        <target><![CDATA[Contract edit]]></target>
+      </trans-unit>
+      <trans-unit id="216" approved="yes">
+        <source><![CDATA[app.contract.new.success]]></source>
+        <target><![CDATA[Contract created correctly]]></target>
+      </trans-unit>
+      <trans-unit id="217" approved="yes">
+        <source><![CDATA[app.contract.edit.success]]></source>
+        <target><![CDATA[Contract has been edited]]></target>
+      </trans-unit>
+      <trans-unit id="218" approved="yes">
+        <source><![CDATA[app.administrator.valid.plan_not_valid]]></source>
+        <target><![CDATA[The plan you selected contains a smaller number of users than the number of users already active in the company.]]></target>
+      </trans-unit>
+      <trans-unit id="219" approved="yes">
+        <source><![CDATA[app.administrator.valid.plan_not_valid_grant]]></source>
+        <target><![CDATA[The plan that I select contains a smaller amount of grants to the amount of grants already used by the company.]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

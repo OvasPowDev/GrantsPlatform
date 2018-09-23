@@ -2,22 +2,22 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Annotations\Annotation\Required;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use JMS\Serializer\Annotation as Serializer;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Plan
+ * Contract
  *
- * @ORM\Table(name="plan")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PlanRepository")
+ * @ORM\Table(name="contract")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ContractRepository")
  * @Serializer\ExclusionPolicy("All")
  * @Gedmo\Loggable()
  * @Gedmo\SoftDeleteable(fieldName="deletedAt", timeAware=true)
  */
-class Plan
+class Contract
 {
     /**
      * @var int
@@ -29,50 +29,11 @@ class Plan
     private $id;
 
     /**
-     * @var string
-     * @ORM\Column(name="name", type="string", length=150)
-     * @Assert\NotBlank()
-     * @Gedmo\Versioned()
-     * @Assert\Length(min="2", max="150")
-     */
-    private $name;
-
-    /**
      * @var string|null
-     * @ORM\Column(name="description", type="string", length=255, nullable=true)
-     * @Gedmo\Versioned()
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
-
-    /**
-     * @var bool|null
-     * @ORM\Column(name="active", type="boolean", nullable=true)
-     * @Gedmo\Versioned()
-     */
-    private $active;
-
-    /**
-     * @var int
-     * @ORM\Column(name="quantity_user", type="integer")
-     * @Assert\NotBlank()
-     * @Gedmo\Versioned()
-     */
-    private $quantityUser;
-
-    /**
-     * @var int|null
-     * @ORM\Column(name="time", type="integer", nullable=true)
-     * @Gedmo\Versioned()
-     */
-    private $time;
-
-    /**
-     * @var int
-     * @ORM\Column(name="quantity_grant", type="integer")
-     * @Assert\NotBlank()
-     * @Gedmo\Versioned()
-     */
-    private $quantityGrant;
 
     /**
      * @var string
@@ -116,6 +77,13 @@ class Plan
     private $deletedAt;
 
     /**
+     * @var bool|null
+     * @ORM\Column(name="active", type="boolean", nullable=false)
+     * @Gedmo\Versioned()
+     */
+    private $active;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="created_from_ip", type="string", length=45, nullable=true)
@@ -132,12 +100,52 @@ class Plan
     private $updatedFromIp;
 
     /**
-     * @ORM\OneToMany(
-     *     targetEntity="Contract",
-     *     mappedBy="plan"
-     * )
+     * @var int
+     * @ORM\Column(name="used_users", type="integer", nullable=true)
+     * @Gedmo\Versioned()
      */
-    private $contracts;
+    private $usedUsers;
+
+    /**
+     * @var int
+     * @ORM\Column(name="grants_used", type="integer", nullable=true)
+     * @Gedmo\Versioned()
+     */
+    private $grantsUsed;
+
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity="Plan",
+     *     inversedBy="contracts"
+     * )
+     * @ORM\JoinColumn(
+     *     name="plan_id",
+     *     referencedColumnName="id"
+     * )
+     * @Serializer\Expose()
+     * @Assert\NotBlank()
+     * @Required()
+     */
+    private $plan;
+
+    /**
+     * @ORM\ManyToOne(
+     *     targetEntity="Company",
+     *     inversedBy="contracts"
+     * )
+     * @ORM\JoinColumn(
+     *     name="company_id",
+     *     referencedColumnName="id"
+     * )
+     * @Serializer\Expose()
+     * @Assert\NotBlank()
+     * @Required()
+     */
+    private $company;
+
+    /**
+     * @var
+     */
     /**
      * Get id.
      *
@@ -149,35 +157,11 @@ class Plan
     }
 
     /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return plan
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
      * Set description.
      *
      * @param string|null $description
      *
-     * @return plan
+     * @return Contract
      */
     public function setDescription($description = null)
     {
@@ -197,107 +181,11 @@ class Plan
     }
 
     /**
-     * Set active.
-     *
-     * @param bool|null $active
-     *
-     * @return plan
-     */
-    public function setActive($active = null)
-    {
-        $this->active = $active;
-
-        return $this;
-    }
-
-    /**
-     * Get active.
-     *
-     * @return bool|null
-     */
-    public function getActive()
-    {
-        return $this->active;
-    }
-
-    /**
-     * Set quantityUser.
-     *
-     * @param int $quantityUser
-     *
-     * @return plan
-     */
-    public function setQuantityUser($quantityUser)
-    {
-        $this->quantityUser = $quantityUser;
-
-        return $this;
-    }
-
-    /**
-     * Get quantityUser.
-     *
-     * @return int
-     */
-    public function getQuantityUser()
-    {
-        return $this->quantityUser;
-    }
-
-    /**
-     * Set time.
-     *
-     * @param int|null $time
-     *
-     * @return plan
-     */
-    public function setTime($time = null)
-    {
-        $this->time = $time;
-
-        return $this;
-    }
-
-    /**
-     * Get time.
-     *
-     * @return int|null
-     */
-    public function getTime()
-    {
-        return $this->time;
-    }
-
-    /**
-     * Set quantityGrant.
-     *
-     * @param int $quantityGrant
-     *
-     * @return plan
-     */
-    public function setQuantityGrant($quantityGrant)
-    {
-        $this->quantityGrant = $quantityGrant;
-
-        return $this;
-    }
-
-    /**
-     * Get quantityGrant.
-     *
-     * @return int
-     */
-    public function getQuantityGrant()
-    {
-        return $this->quantityGrant;
-    }
-
-    /**
      * Set createdBy.
      *
      * @param string|null $createdBy
      *
-     * @return plan
+     * @return Contract
      */
     public function setCreatedBy($createdBy = null)
     {
@@ -321,7 +209,7 @@ class Plan
      *
      * @param string|null $updatedBy
      *
-     * @return plan
+     * @return Contract
      */
     public function setUpdatedBy($updatedBy = null)
     {
@@ -345,7 +233,7 @@ class Plan
      *
      * @param \DateTime $createdAt
      *
-     * @return plan
+     * @return Contract
      */
     public function setCreatedAt($createdAt)
     {
@@ -369,7 +257,7 @@ class Plan
      *
      * @param \DateTime|null $updatedAt
      *
-     * @return plan
+     * @return Contract
      */
     public function setUpdatedAt($updatedAt = null)
     {
@@ -393,7 +281,7 @@ class Plan
      *
      * @param \DateTime|null $deletedAt
      *
-     * @return plan
+     * @return Contract
      */
     public function setDeletedAt($deletedAt = null)
     {
@@ -417,7 +305,7 @@ class Plan
      *
      * @param string|null $createdFromIp
      *
-     * @return plan
+     * @return Contract
      */
     public function setCreatedFromIp($createdFromIp = null)
     {
@@ -441,7 +329,7 @@ class Plan
      *
      * @param string|null $updatedFromIp
      *
-     * @return plan
+     * @return Contract
      */
     public function setUpdatedFromIp($updatedFromIp = null)
     {
@@ -459,52 +347,124 @@ class Plan
     {
         return $this->updatedFromIp;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->contracts = new ArrayCollection();
-    }
 
     /**
-     * Add contract.
+     * Set active.
      *
-     * @param \AppBundle\Entity\Contract $contract
+     * @param bool $active
      *
-     * @return Plan
+     * @return Contract
      */
-    public function addContract(Contract $contract)
+    public function setActive($active)
     {
-        $this->contracts[] = $contract;
+        $this->active = $active;
 
         return $this;
     }
 
     /**
-     * Remove contract.
+     * Get active.
      *
-     * @param \AppBundle\Entity\Contract $contract
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     * @return bool
      */
-    public function removeContract(Contract $contract)
+    public function getActive()
     {
-        return $this->contracts->removeElement($contract);
+        return $this->active;
     }
 
     /**
-     * Get contracts.
+     * Set plan.
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \AppBundle\Entity\Plan|null $plan
+     *
+     * @return Contract
      */
-    public function getContracts()
+    public function setPlan(Plan $plan = null)
     {
-        return $this->contracts;
+        $this->plan = $plan;
+
+        return $this;
     }
 
-    function __toString()
+    /**
+     * Get plan.
+     *
+     * @return \AppBundle\Entity\Plan|null
+     */
+    public function getPlan()
     {
-        return $this->name;
+        return $this->plan;
+    }
+
+    /**
+     * Set company.
+     *
+     * @param \AppBundle\Entity\Company|null $company
+     *
+     * @return Contract
+     */
+    public function setCompany(Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company.
+     *
+     * @return \AppBundle\Entity\Company|null
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set usedUsers.
+     *
+     * @param int|null $usedUsers
+     *
+     * @return Contract
+     */
+    public function setUsedUsers($usedUsers = null)
+    {
+        $this->usedUsers = $usedUsers;
+
+        return $this;
+    }
+
+    /**
+     * Get usedUsers.
+     *
+     * @return int|null
+     */
+    public function getUsedUsers()
+    {
+        return $this->usedUsers;
+    }
+
+    /**
+     * Set grantsUsed.
+     *
+     * @param int|null $grantsUsed
+     *
+     * @return Contract
+     */
+    public function setGrantsUsed($grantsUsed = null)
+    {
+        $this->grantsUsed = $grantsUsed;
+
+        return $this;
+    }
+
+    /**
+     * Get grantsUsed.
+     *
+     * @return int|null
+     */
+    public function getGrantsUsed()
+    {
+        return $this->grantsUsed;
     }
 }

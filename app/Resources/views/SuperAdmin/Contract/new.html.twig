@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 {% trans_default_domain 'AppBundle' %}
 
-{% block title %}{{ 'app.administrator.plan.edit' | trans }}{% endblock %}
+{% block title %}{{ 'app.administrator.contract.new' | trans }}{% endblock %}
 
 {% block breadcrumb %}
-    <li><a href="{{ path('administrator_plan_list') }}">{{ 'app.administrator.plan.list' | trans }}</a></li>
+    <li><a href="{{ path('administrator_contract_list') }}">{{ 'app.administrator.contract.list' | trans }}</a></li>
     <li class="active">
-        <strong>{{ 'app.administrator.plan.edit' | trans }}</strong>
+        <strong>{{ 'app.administrator.contract.new' | trans }}</strong>
     </li>
 {% endblock %}
 
@@ -15,12 +15,12 @@
 
     <div class="ibox float-e-margins">
         <div class="ibox-title">
-            <h5>{{ 'app.administrator.plan.edit' | trans }}</h5>
+            <h5>{{ 'app.administrator.contract.new' | trans }}</h5>
             <div class="ibox-tools">
             </div>
         </div>
         <div class="ibox-content">
-            {{ include('SuperAdmin/Plan/_form.html.twig') }}
+            {{ include('SuperAdmin/Contract/_form.html.twig') }}
         </div>
     </div>
 

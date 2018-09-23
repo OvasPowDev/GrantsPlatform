@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% trans_default_domain 'AppBundle' %}
+{% import ":Components/Inspinia/UI:macros.html.twig" as UI %}
+
+{% block title %}{{ 'app.administrato.contract.list' | trans }}{% endblock %}
+
+{% block breadcrumb %}
+    <li class="active">
+        <strong>{{ 'app.administrato.contract.list' | trans }}</strong>
+    </li>
+{% endblock %}
+
+{% block buttons %}
+    <a href="{{ path('administrator_contract_new') }}"
+       class="btn btn-primary ladda-button" data-style="expand-right">{{ 'app.administrator.contract.new' | trans }}</a>
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{{ 'app.administrator.contract.list' | trans }}</h5>
+            <div class="ibox-tools"></div>
+        </div>
+        <div class="ibox-content">
+
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                    <tr>
+                        <th>{{ 'app.code' | trans }}</th>
+                        <th>{{ 'app.company' | trans }}</th>
+                        <th>{{ 'app.administrator.plan' | trans }}</th>
+                        <th>{{ 'app.created_at' | trans }}</th>
+                        <th>{{ 'app.quantity_user' | trans }}</th>
+                        <th>{{ 'app.used_users' | trans }}</th>
+                        <th>{{ 'app.quantity_grant' | trans }}</th>
+                        <th>{{ 'app.grants_used' | trans }}</th>
+                        <th>{{ 'app.active' | trans }}</th>
+                        <th>{{ 'app.actions' | trans }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for contract in contracts %}
+                        <tr class="gradeX">
+                            <td>{{ contract.id }}</td>
+                            <td>{{ contract.company.name }}</td>
+                            <td>{{ contract.plan.name }}</td>
+                            <td>{{ contract.createdAt | date('d-m-Y') }}</td>
+                            <td align="center">{{ contract.plan.quantityUser }}</td>
+                            <td align="center">{{ contract.usedUsers }}</td>
+                            <td align="center">{{ contract.plan.quantityGrant }}</td>
+                            <td align="center">{{ contract.grantsUsed }}</td>
+
+                            <td class="text-center">
+                                <a href="{{ path('plan_contract_active',  { 'id':contract.id }) }}">
+                                    <i class="fa fa-2x fa-{{ contract.active ? 'check-circle-o' : 'ban' }}"></i>
+                                </a>
+                            </td>
+                            <td align="center">
+                                {{ UI.editButton(path('administrator_contract_edit', { 'id': contract.id })) }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>{{ 'app.code' | trans }}</th>
+                        <th>{{ 'app.company' | trans }}</th>
+                        <th>{{ 'app.administrator.plan' | trans }}</th>
+                        <th>{{ 'app.created_at' | trans }}</th>
+                        <th>{{ 'app.quantity_user' | trans }}</th>
+                        <th>{{ 'app.used_users' | trans }}</th>
+                        <th>{{ 'app.quantity_grant' | trans }}</th>
+                        <th>{{ 'app.grants_used' | trans }}</th>
+                        <th>{{ 'app.active' | trans }}</th>
+                        <th>{{ 'app.actions' | trans }}</th>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

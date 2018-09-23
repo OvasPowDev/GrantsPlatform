@@ -12,31 +12,31 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class MenuBuilder
 {
-	/**
-	 * @var FactoryInterface $factory
-	 */
-	private $factory;
+    /**
+     * @var FactoryInterface $factory
+     */
+    private $factory;
 
-	/**
-	 * @var ContainerInterface $container
-	 */
-	private $container;
+    /**
+     * @var ContainerInterface $container
+     */
+    private $container;
 
-	/**
-	 * @param FactoryInterface $factory
-	 * @param ContainerInterface $container
-	 *
-	 * Add any other dependency you need
-	 */
-	public function __construct(FactoryInterface $factory, ContainerInterface $container)
-	{
-		$this->factory = $factory;
-		$this->container = $container;
-	}
-
-	public function mainMenu(array $options)
+    /**
+     * @param FactoryInterface $factory
+     * @param ContainerInterface $container
+     *
+     * Add any other dependency you need
+     */
+    public function __construct(FactoryInterface $factory, ContainerInterface $container)
     {
-		$menu = $this->factory->createItem('root')
+        $this->factory = $factory;
+        $this->container = $container;
+    }
+
+    public function mainMenu(array $options)
+    {
+        $menu = $this->factory->createItem('root')
             ->setChildrenAttribute('class', 'nav metismenu')
             ->setChildrenAttribute('id', 'side-menu');
 
@@ -140,20 +140,32 @@ class MenuBuilder
             }
         }
 
+// MENU Plans
+        $menu
+            ->addChild('app.administrator.plans', ['uri' => '#'])
+            ->setAttribute('dropdown', true)
+            ->setAttribute('icon', 'fa fa-newspaper-o')
+            ->setChildrenAttribute('class', 'nav nav-second-level collapse');
 
-            $menu
-                ->addChild('app.administrator.plan', ['uri' => '#'])
-                ->setAttribute('dropdown', true)
-                ->setAttribute('icon', 'fa fa-newspaper-o')
-                ->setChildrenAttribute('class', 'nav nav-second-level collapse');
+        $menu['app.administrator.plans']
+            ->addChild('app.administrator.plan.new', ['route' => 'administrator_plan_new']);
 
-                $menu['app.administrator.plan']
-                    ->addChild('app.administrator.plan.new', ['route' => 'administrator_plan_new']);
+        $menu['app.administrator.plans']
+            ->addChild('app.administrator.plan.list', ['route' => 'administrator_plan_list'])
+            ->setExtra('routes', ['administrator_plan_list']);
+// Menu contracts
+        $menu
+            ->addChild('app.administrator.contracts', ['uri' => '#'])
+            ->setAttribute('dropdown', true)
+            ->setAttribute('icon', 'fa fa-thumbs-o-up')
+            ->setChildrenAttribute('class', 'nav nav-second-level collapse');
 
-                $menu['app.administrator.plan']
-                    ->addChild('app.administrator.plan.list', ['route' => 'administrator_plan_list'])
-                    ->setExtra('routes', ['administrator_plan_list']);
+        $menu['app.administrator.contracts']
+            ->addChild('app.administrator.contract.new', ['route' => 'administrator_contract_new']);
 
+        $menu['app.administrator.contracts']
+            ->addChild('app.administrator.contract.list', ['route' => 'administrator_contract_list'])
+            ->setExtra('routes', ['administrator_contract_list']);
 
 
 //        // Permission list
