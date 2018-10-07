@@ -64,11 +64,11 @@ class MenuBuilder
                 ->setAttribute('icon', 'fa fa-th-large');
         }
 
-        if ($checker->isGranted(User::ROLE_APP)) {
-            $menu
-                ->addChild('app.app.dashboard', ['route' => 'app_homepage'])
-                ->setAttribute('icon', 'fa fa-th-large');
-        }
+//        if ($checker->isGranted(User::ROLE_APP)) {
+//            $menu
+//                ->addChild('app.app.dashboard', ['route' => 'app_homepage'])
+//                ->setAttribute('icon', 'fa fa-th-large');
+//        }
     }
 
     /**
@@ -96,14 +96,14 @@ class MenuBuilder
                 ->setAttribute('tag', 'app.docs');
         }
 
-        if ($checker->isGranted(User::ROLE_APP)) {
-            $menu
-                ->addChild('app.api.docs', ['route' => 'nelmio_api_doc_index', 'routeParameters' => ['view' => 'app']])
-                ->setLinkAttribute('target', '_blank')
-                ->setAttribute('class', 'special_link')
-                ->setAttribute('icon', 'fa fa-book')
-                ->setAttribute('tag', 'app.docs');
-        }
+//        if ($checker->isGranted(User::ROLE_APP)) {
+//            $menu
+//                ->addChild('app.api.docs', ['route' => 'nelmio_api_doc_index', 'routeParameters' => ['view' => 'app']])
+//                ->setLinkAttribute('target', '_blank')
+//                ->setAttribute('class', 'special_link')
+//                ->setAttribute('icon', 'fa fa-book')
+//                ->setAttribute('tag', 'app.docs');
+//        }
     }
 
     /**
@@ -140,32 +140,36 @@ class MenuBuilder
             }
         }
 
-// MENU Plans
-        $menu
-            ->addChild('app.administrator.plans', ['uri' => '#'])
-            ->setAttribute('dropdown', true)
-            ->setAttribute('icon', 'fa fa-newspaper-o')
-            ->setChildrenAttribute('class', 'nav nav-second-level collapse');
 
-        $menu['app.administrator.plans']
-            ->addChild('app.administrator.plan.new', ['route' => 'administrator_plan_new']);
+        if ($checker->isGranted(User::ROLE_SUPER_ADMIN)) {
+            // MENU Plans
+            $menu
+                ->addChild('app.administrator.plans', ['uri' => '#'])
+                ->setAttribute('dropdown', true)
+                ->setAttribute('icon', 'fa fa-newspaper-o')
+                ->setChildrenAttribute('class', 'nav nav-second-level collapse');
 
-        $menu['app.administrator.plans']
-            ->addChild('app.administrator.plan.list', ['route' => 'administrator_plan_list'])
-            ->setExtra('routes', ['administrator_plan_list']);
+            $menu['app.administrator.plans']
+                ->addChild('app.administrator.plan.new', ['route' => 'administrator_plan_new']);
+
+            $menu['app.administrator.plans']
+                ->addChild('app.administrator.plan.list', ['route' => 'administrator_plan_list'])
+                ->setExtra('routes', ['administrator_plan_list']);
 // Menu contracts
-        $menu
-            ->addChild('app.administrator.contracts', ['uri' => '#'])
-            ->setAttribute('dropdown', true)
-            ->setAttribute('icon', 'fa fa-thumbs-o-up')
-            ->setChildrenAttribute('class', 'nav nav-second-level collapse');
+            $menu
+                ->addChild('app.administrator.contracts', ['uri' => '#'])
+                ->setAttribute('dropdown', true)
+                ->setAttribute('icon', 'fa fa-thumbs-o-up')
+                ->setChildrenAttribute('class', 'nav nav-second-level collapse');
 
-        $menu['app.administrator.contracts']
-            ->addChild('app.administrator.contract.new', ['route' => 'administrator_contract_new']);
+            $menu['app.administrator.contracts']
+                ->addChild('app.administrator.contract.new', ['route' => 'administrator_contract_new']);
 
-        $menu['app.administrator.contracts']
-            ->addChild('app.administrator.contract.list', ['route' => 'administrator_contract_list'])
-            ->setExtra('routes', ['administrator_contract_list']);
+            $menu['app.administrator.contracts']
+                ->addChild('app.administrator.contract.list', ['route' => 'administrator_contract_list'])
+                ->setExtra('routes', ['administrator_contract_list']);
+        }
+
 
 
 //        // Permission list
@@ -195,17 +199,17 @@ class MenuBuilder
 //        }
     }
 
-    /**
-     * @param $menu
-     */
-    public function configureAPPMenu(ItemInterface &$menu)
-    {
-        $checker = $this->container->get('security.authorization_checker');
-
-        if ($checker->isGranted(User::ROLE_APP)) {
-            // TODO: Build menu
-        }
-    }
+//    /**
+//     * @param $menu
+//     */
+//    public function configureAPPMenu(ItemInterface &$menu)
+//    {
+//        $checker = $this->container->get('security.authorization_checker');
+//
+//        if ($checker->isGranted(User::ROLE_APP)) {
+//            // TODO: Build menu
+//        }
+//    }
 
     /**
      * @param $menu

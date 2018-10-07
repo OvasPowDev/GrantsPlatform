@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller\Admin;
 
+use AppBundle\Entity\Company;
+use AppBundle\Entity\Contract;
+use AppBundle\Entity\Plan;
 use AppBundle\Entity\User;
 use AppBundle\Security\PrimaryVoter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -60,9 +63,10 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPlainPassword($user->passcode);
-
             $this->joinCompany($user);
-
+            if (!$this->validCompany($user->getCompany())){
+                return $this->render('Admin/User/new.html.twig', ['user' => $user, 'form' => $form->createView()]);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
@@ -74,6 +78,35 @@ class UserController extends Controller
         }
 
         return $this->render('Admin/User/new.html.twig', ['user' => $user, 'form' => $form->createView()]);
+    }
+
+    private function validCompany(Company $company){
+        $translator = $this->get('translator');
+        $entityManager = $this->getDoctrine()->getManager();
+        /** @var Contract $contractActive */
+        $contractActive = $entityManager->getRepository('AppBundle:Contract')
+            ->findOneBy(['company' => $company, 'active' =>true]);
+
+        if ($contractActive){
+            $currentCount = $contractActive->getUsedUsers() + 1;
+            /** @var Plan $plan */
+            $plan = $contractActive->getPlan();
+            if ($plan->getQuantityUser() < $currentCount) {
+                $this->addFlash('warning',$translator->trans('app.company.warning_not_user', [], 'AppBundle'));
+
+                return false;
+            }else {
+                $contractActive->setUsedUsers($currentCount);
+                $entityManager->persist($contractActive);
+                $entityManager->flush();
+            }
+        }else{
+            $this->addFlash('warning',$translator->trans('app.company.warning_not_contact', [], 'AppBundle'));
+
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -92,9 +125,7 @@ class UserController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $user->setPlainPassword($user->passcode);
-
             $this->joinCompany($user);
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

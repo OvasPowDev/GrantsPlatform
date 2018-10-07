@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Admin;
 
 use AppBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -41,7 +42,11 @@ class UserType extends AbstractType
 
         if ($current_user && $current_user->hasRole(User::ROLE_SUPER_ADMIN)) {
             $builder
-                ->add('company', null, ['required' => true, 'label' => 'app.company', 'translation_domain' => 'AppBundle'])
+                ->add('company', null, ['required' => true, 'label' => 'app.company', 'translation_domain' => 'AppBundle',
+                    'query_builder' => function (EntityRepository $er){
+                        return $er->createQueryBuilder('c')
+                            ->where('c.enabled = true');
+                    }])
             ;
         }
 
@@ -54,7 +59,7 @@ class UserType extends AbstractType
             ->add('roles', ChoiceType::class, ['choices' => $selectableRoles, 'multiple' => true, 'data' => $roles, 'label' => 'app.roles', 'translation_domain' => 'AppBundle'])
             ->add('email', null, ['label' => 'app.email', 'translation_domain' => 'AppBundle'])
             ->add('enabled', null, ['label' => 'app.enabled', 'translation_domain' => 'AppBundle'])
-            ->add('deletedAt', DateTimeType::class, ['format' => 'yyyy-MM-dd', 'widget' => 'single_text', 'attr' => ['class' => 'datepicker'], 'label' => 'app.deleted_at', 'translation_domain' => 'AppBundle'])
+//            ->add('deletedAt', DateTimeType::class, ['format' => 'yyyy-MM-dd', 'widget' => 'single_text', 'attr' => ['class' => 'datepicker'], 'label' => 'app.deleted_at', 'translation_domain' => 'AppBundle'])
         ;
     }
 

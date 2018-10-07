@@ -31,8 +31,9 @@
                         <th>{{ 'app.logo' | trans }}</th>
                         <th>{{ 'app.name' | trans }}</th>
                         <th>{{ 'app.email' | trans }}</th>
-                        <th>{{ 'app.enabled' | trans }}</th>
-                        <th>{{ 'app.expires_at' | trans }}</th>
+                        <th>{{ 'app.created_at' | trans }}</th>
+
+                        <th>{{ 'app.active' | trans }}</th>
                         <th>{{ 'app.actions' | trans }}</th>
                     </tr>
                     </thead>
@@ -49,11 +50,15 @@
                             </td>
                             <td><strong>{{ company }}</strong></td>
                             <td>{{ company.email | default('---') }}</td>
-                            <td>{{ company.enabled ? 'app.yes' | trans : 'app.no' | trans }}</td>
-                            <td>{{ company.expiresAt ? company.expiresAt | date('Y-m-d') : 'app.no' | trans }}</td>
+                            <td>{{ company.createdAt ? company.createdAt | date('Y-m-d') : 'app.no' | trans }}</td>
+
+                            <td class="text-center">
+                                <a href="{{ path('company_change_active',  { 'id':company.id }) }}">
+                                    <i class="fa fa-2x fa-{{ company.enabled ? 'check-circle-o' : 'ban' }}"></i>
+                                </a>
+                            </td>
                             <td align="center">
                                 {{ UI.editButton(path('administrator_company_edit', { 'id': company.id })) }}
-
                             </td>
                         </tr>
                     {% endfor %}
@@ -63,8 +68,8 @@
                         <th>{{ 'app.logo' | trans }}</th>
                         <th>{{ 'app.name' | trans }}</th>
                         <th>{{ 'app.email' | trans }}</th>
-                        <th>{{ 'app.enabled' | trans }}</th>
-                        <th>{{ 'app.expires_at' | trans }}</th>
+                        <th>{{ 'app.created_at' | trans }}</th>
+                        <th>{{ 'app.active' | trans }}</th>
                         <th>{{ 'app.actions' | trans }}</th>
                     </tr>
                     </tfoot>

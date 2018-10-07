@@ -117,4 +117,19 @@ class CompanyController extends Controller
 
         return $this->redirectToRoute('administrator_company_list');
     }
+
+    /**
+     * Change active company
+     * @param Company $company
+     * @return Response
+     * @Route("/{id}/change_active", name="company_change_active")
+     */
+    public function changeActiveAction(Company $company)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $company->setEnabled(!$company->getEnabled());
+        $entityManager->flush();
+
+        return $this->redirectToRoute('administrator_company_list');
+    }
 }

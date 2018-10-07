@@ -95,9 +95,9 @@ class DefaultController extends Controller
             $stringRoute = 'fos_user_security_logout';
         }
 
-        if ($this->get('security.authorization_checker')->isGranted(User::ROLE_APP)) {
-            $stringRoute = 'app_homepage';
-        }
+//        if ($this->get('security.authorization_checker')->isGranted(User::ROLE_APP)) {
+//            $stringRoute = 'app_homepage';
+//        }
 
         if ($this->get('security.authorization_checker')->isGranted(User::ROLE_ADMIN)) {
             $stringRoute = 'administrator_dashboard';
