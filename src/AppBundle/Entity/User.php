@@ -28,7 +28,7 @@ class User extends BaseUser
 {
     const ROLES_DEFINITION = [
         'ROLE_USER' => 'app.roles.user',
-        'ROLE_APP' => 'app.roles.app',
+//        'ROLE_APP' => 'app.roles.app',
         'ROLE_ADMIN' => 'app.roles.admin',
         'ROLE_API' => 'app.roles.api',
         'ROLE_SUPER_ADMIN' => 'app.roles.super_admin',
@@ -42,7 +42,7 @@ class User extends BaseUser
     ];
 
     const ROLE_USER = 'ROLE_USER';
-    const ROLE_APP = 'ROLE_APP';
+//    const ROLE_APP = 'ROLE_APP';
     const ROLE_ADMIN = 'ROLE_ADMIN';
     const ROLE_API = 'ROLE_API';
     const ROLE_SUPER_ADMIN = 'ROLE_SUPER_ADMIN';

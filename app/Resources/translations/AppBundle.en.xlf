@@ -878,6 +878,14 @@
         <source><![CDATA[app.administrator.valid.plan_not_valid_grant]]></source>
         <target><![CDATA[The plan that I select contains a smaller amount of grants to the amount of grants already used by the company.]]></target>
       </trans-unit>
+      <trans-unit id="220" approved="yes">
+        <source><![CDATA[app.company.warning_not_contact]]></source>
+        <target><![CDATA[The selected company does not have an active contract.]]></target>
+      </trans-unit>
+      <trans-unit id="221" approved="yes">
+        <source><![CDATA[app.company.warning_not_user]]></source>
+        <target><![CDATA[The selected company does not have available users.]]></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
